@@ -1,0 +1,15 @@
+.button{
+		-fx-background-color:  #2196f3;
+}
+.mainPane{
+	-fx-background-color: #543e82;
+}
+.textField{
+	-fx-text-fill: #151928;
+	-fx-prompt-text-fill: #151928;
+	-fx-background-color: #eaecef;
+}
+.signUpBotton{
+	-fx-background-color:#151928;
+	-fx-text-fill: #a0a2ab; 
+}

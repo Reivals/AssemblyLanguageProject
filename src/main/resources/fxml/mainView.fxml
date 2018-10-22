@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1190.0" styleClass="mainPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <ImageView fx:id="inputImage" fitHeight="500.0" fitWidth="474.0" layoutX="76.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/NoPhotoAvaliable.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="outputImage" fitHeight="500.0" fitWidth="474.0" layoutX="704.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/NoPhotoAvaliable.jpg" />
+         </image></ImageView>
+      <ChoiceBox fx:id="operationChoiceBox" layoutX="59.0" layoutY="53.0" prefHeight="31.0" prefWidth="236.0" styleClass="textField" stylesheets="@../css/main.css" />
+      <JFXButton fx:id="executeButton" buttonType="RAISED" layoutX="1030.0" layoutY="657.0" onAction="#executeButtonClicked" prefHeight="54.0" prefWidth="126.0" styleClass="logInButton" stylesheets="@../css/main.css" text="Execute" />
+      <JFXButton fx:id="chooseInputImageButton" buttonType="RAISED" layoutX="140.0" layoutY="657.0" onAction="#chooseInputImageButtonClicked" prefHeight="54.0" prefWidth="196.0" styleClass="logInButton" stylesheets="@../css/main.css" text="Choose input image" />
+      <JFXTextField fx:id="sepiaIndicatorTextField" layoutX="345.0" layoutY="54.0" prefHeight="29.0" prefWidth="52.0" styleClass="textField" stylesheets="@../css/main.css" visible="false" />
+   </children>
+</AnchorPane>
