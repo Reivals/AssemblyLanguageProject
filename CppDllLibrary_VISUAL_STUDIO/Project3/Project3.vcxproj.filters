@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="model_CppDllLibrary.h">
+    <ClInclude Include="model_CDllLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

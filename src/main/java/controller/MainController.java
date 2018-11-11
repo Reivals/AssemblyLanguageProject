@@ -17,17 +17,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.AlertClass;
 import model.Algorithm;
-import model.CppDllLibrary;
 import model.ImageConverter;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
