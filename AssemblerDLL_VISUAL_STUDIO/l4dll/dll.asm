@@ -5,7 +5,16 @@ whichArray QWORD 0
 functionTable QWORD 0
 height QWORD 0
 arrayWidth QWORD 0
-
+env QWORD 0
+image QWORD 0
+alfa DWORD 0
+singleArray QWORD 0
+funTable QWORD 0
+red DWORD 0
+green DWORD 0
+blue DWORD 0
+pixel DWORD 0
+returnAdress QWORD 0
 .CODE
 _DllMainCRTStartup PROC hInstDLL:DWORD, reason:DWORD, reserved1: DWORD
 	mov	eax, 1 
@@ -15,16 +24,16 @@ _DllMainCRTSTARTUP ENDP
 
 Java_model_AssemblerDllLibrary_convertToNegative proc
 
-				LOCAL env:QWORD
-				LOCAL image:QWORD
-				LOCAL body:QWORD
-				LOCAL singleArray:QWORD
-				LOCAL alfa:DWORD
-				LOCAL funTable:QWORD
-				LOCAL red:DWORD
-				LOCAL green:DWORD
-				LOCAL blue:DWORD
-				LOCAL pixel:DWORD
+				;LOCAL env:QWORD
+				;LOCAL image:QWORD
+				;LOCAL body:QWORD
+				;LOCAL singleArray:QWORD
+				;LOCAL alfa:DWORD
+				;LOCAL funTable:QWORD
+				;LOCAL red:DWORD
+				;LOCAL green:DWORD
+				;LOCAL blue:DWORD
+				;LOCAL pixel:DWORD
 
 				;KOLEJNOSC wywo³ywania funkcji JNI 
 				;1) rdx 
@@ -33,14 +42,21 @@ Java_model_AssemblerDllLibrary_convertToNegative proc
 				;4) r9
 				;5+) shadow space
 
-
+				mov count, 0
 				mov env,rcx ; get JNIEnv variable
 				mov image,r8 ; get jobjectArray variable
 				mov arrayWidth, r9 ; get width of image
-				mov rbx, QWORD PTR[rbp + 48] ; get height of image
+				mov rbx, QWORD PTR[rsp + 40] ; get height of image
 				mov height, rbx ; 5th
 				mov rax, [rcx]  ; get location of JNI function table
 				mov functionTable, rax
+				pop returnAdress
+				pop rax
+				pop rax
+				pop rax
+				pop rax
+				pop height ; tutaj
+
 
 outerLoop:
 				mov rcx, env
@@ -133,7 +149,7 @@ chunkOfMemory:	mov ebx, DWORD PTR[r11 + r9] ;java int - 4B = 32b so DWORD
 				mov rbx, height
 				cmp rbx, count
 				jnz outerLoop ; height loop
-
+				push returnAdress
 				ret ; return to java
 
 Java_model_AssemblerDllLibrary_convertToNegative endp
