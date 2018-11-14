@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -32,9 +33,11 @@ import java.util.List;
 
 public class MainController {
     private static ObservableList<String> observableArray;
+    private static ObservableList<String> observableMessages;
     static{
         observableArray = FXCollections.observableArrayList("Negative C++", "Negative assembler",
                 "Sepia C++", "Sepia assember");
+        observableMessages = FXCollections.observableArrayList();
     }
 
     @FXML
@@ -60,7 +63,11 @@ public class MainController {
     private JFXButton chooseInputImageButton;
 
     @FXML
+    private ListView<String> informationListView;
+
+    @FXML
     public void initialize(){
+        informationListView.setItems(observableMessages);
         inputImage.preserveRatioProperty();
         operationChoiceBox.setItems(observableArray);
         operationChoiceBox.getSelectionModel().selectFirst();
@@ -102,25 +109,34 @@ public class MainController {
     }
 
     @FXML
-    void executeButtonClicked() throws IOException {
+    void executeButtonClicked() {
         if(inputFile == null){
             AlertClass.sendAlert("Image is not selected!", "ERROR", Alert.AlertType.ERROR).show();
         }else{
-            BufferedImage bufferedImage = performActionOnImage(inputFile);
-            if(bufferedImage != null){
-                outputImage.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+            long startTime = System.nanoTime();
+            try{
+                BufferedImage bufferedImage = performActionOnImage(inputFile);
+                long endTime = System.nanoTime();
+                if(bufferedImage != null){
+                    outputImage.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+                }
+                observableMessages.add("Wykonano \"" + operationChoiceBox.getSelectionModel().getSelectedItem() + "\" w czasie " +
+                        Long.toString(((endTime-startTime)/100000)) + "ms.");
+            } catch(Exception e){
+                observableMessages.add("Nie wykonano \"" + operationChoiceBox.getSelectionModel().getSelectedItem() + "\"");
             }
+
         }
 
     }
 
-    public BufferedImage performActionOnImage (File file) throws IOException {
+    public BufferedImage performActionOnImage (File file) throws Exception {
         BufferedImage bufferedImage;
         try {
             bufferedImage = convertFileToBufferImage(file);
         } catch (IOException e) {
             AlertClass.sendAlert("Cannot perform this action!", "ERROR", Alert.AlertType.ERROR).show();
-            return null;
+            throw new Exception("Error occured");
         }
 
         int pixels[][] = ImageConverter.converToArrayOfPixels(bufferedImage);

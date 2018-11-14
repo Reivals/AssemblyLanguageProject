@@ -16,7 +16,7 @@ public class Algorithm extends TimeComparable {
     }
 
 
-    public void runAlgorithm(String algorithmName, int[][] array, double sepiaIndicator) {
+    public void runAlgorithm(String algorithmName, int[][] array, double sepiaIndicator) throws Exception {
         if (algorithmName.equals("Negative C++")) {
             cDllLibrary.convertToNegative(array);
 
@@ -26,12 +26,14 @@ public class Algorithm extends TimeComparable {
         } else if (algorithmName.equals("Sepia C++")) {
             if(sepiaIndicator < 20 || sepiaIndicator > 40){
                 AlertClass.sendAlert("Sepia indicator must have value between <20;40>","Information", Alert.AlertType.INFORMATION).show();
+                throw new Exception("Error occured");
             }
             cDllLibrary.convertToSepia(array, sepiaIndicator);
 
         } else if (algorithmName.equals("Sepia assember")) {
             if(sepiaIndicator < 20 || sepiaIndicator > 40){
                 AlertClass.sendAlert("Sepia indicator must have value between <20;40>","Information", Alert.AlertType.INFORMATION).show();
+                throw new Exception("Error occured");
             }
 
             assemblerDllLibrary.convertToSepia(array,array[0].length,array.length, (int) sepiaIndicator);
