@@ -1,4 +1,5 @@
 ;-------------------------------------------------------------------------
 LIBRARY l4dll
 EXPORTS Java_model_AssemblerDllLibrary_convertToNegative
+EXPORTS Java_model_AssemblerDllLibrary_convertToSepia
 ;-------------------------------------------------------------------------

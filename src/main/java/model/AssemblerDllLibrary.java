@@ -9,5 +9,5 @@ public class AssemblerDllLibrary {
     }
 
     public native void convertToNegative(int[][] image, int width, int height);
-    public native void convertToSepia(int[][] image, int width, int height);
+    public native void convertToSepia(int[][] image, int width, int height, int sepiaIndicator);
 }

@@ -33,7 +33,8 @@ public class Algorithm extends TimeComparable {
             if(sepiaIndicator < 20 || sepiaIndicator > 40){
                 AlertClass.sendAlert("Sepia indicator must have value between <20;40>","Information", Alert.AlertType.INFORMATION).show();
             }
-            assemblerDllLibrary.convertToSepia(array,array[0].length,array.length);
+
+            assemblerDllLibrary.convertToSepia(array,array[0].length,array.length, (int) sepiaIndicator);
         }
     }
 
