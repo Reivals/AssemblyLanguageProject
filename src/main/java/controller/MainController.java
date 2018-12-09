@@ -121,7 +121,7 @@ public class MainController {
                     outputImage.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
                 }
                 observableMessages.add("Wykonano \"" + operationChoiceBox.getSelectionModel().getSelectedItem() + "\" w czasie " +
-                        Long.toString(((endTime-startTime)/100000)) + "ms.");
+                        Long.toString(((endTime-startTime)/1000000)) + "ms.");
             } catch(Exception e){
                 observableMessages.add("Nie wykonano \"" + operationChoiceBox.getSelectionModel().getSelectedItem() + "\"");
             }
